@@ -1,2 +1,2 @@
-# atmel-studio
+# Atmel Studio
  Atmel Studio Programs
