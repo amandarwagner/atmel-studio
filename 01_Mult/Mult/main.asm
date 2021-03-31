@@ -11,7 +11,6 @@ start:
 	LDI r18, 0 ; registrador Z low
 	ldi r19, 0 ; registrador Z high
 	LDI r20, 8 ; registrador count
-	LDI r21, 128 ; registrador 1000 0000
 
 checar_bit_y:
 	LDI r22, 1 ; registrador 0000 0001
