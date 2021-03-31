@@ -6,8 +6,8 @@
 ;
 
 start:
-	LDI r16, 255 ; registrador X
-	LDI r17, 7 ; registrador Y
+	LDI r16, 195 ; registrador X
+	LDI r17, 201 ; registrador Y
 	LDI r18, 0 ; registrador Z low
 	ldi r19, 0 ; registrador Z high
 	LDI r20, 8 ; registrador count
@@ -25,16 +25,7 @@ soma:
 
 shift_z:
 	ROR r19 ; rotar o Z high
-	BRCS carry_ror_1; se o carry for 1, add no r18 1000 0000. se o carry for 0, shiftar o Z low
 	ROR r18 ; rotar o Z low
-	ROR r17;
-	SUBI r20,1
-	TST r20
-	BRNE checar_bit_y
-
-carry_ror_1:
-	ROR r18 ; rotacionar o r18
-	ADC r18, r21 ; add 1000 0000 no r18
 	ROR r17;
 	SUBI r20,1
 	TST r20
