@@ -14,7 +14,7 @@ start:
 	ldi r26, 10
 	ldi r25, high(v_z) ; r25 = parte alta do endereço do primeiro valor do vetor
 	ldi r24, low(v_z) ; r24 = parte baixa do endereço do primeiro valor do vetor
-	;rcall sort
+	rcall sort
 	;chamando rotina para encontrar maior
 	ldi r26, 10
 	ldi r25, high(v_v)
@@ -39,11 +39,27 @@ _end:
 sort:
 	mov yh, r25
 	mov yl, r24
-	dec R26
+	ldi r16, 1
 loop_sort:
-	ld r15, Y+
-	dec R26
-	BRNE loop_sort
+	ld r17, Y+
+	ld r18, y
+	inc r16
+
+	cp r17, r18 ; compara se o r17 é maior que o r18
+	brmi ordem ; pula se r18 for maior (flag negativa)
+	breq ordem; pula se forem o mesmo valor
+
+	; se r18 for maior
+	dec yl
+	brpl inverte
+	dec yh
+inverte:
+	st y+, r18
+	st y, r27
+	jmp sort
+ordem:
+	cp r19, r26
+	brne loop_sort
 	ret
 
 ; r25:r24 recebe o endereco do vetor
